@@ -86,12 +86,12 @@
 						})))
 					).append(
 					$(options.rowTpl)
-						.append($(options.cellTpl).append($(options.buttonFunctionTpl).html('&plusmn;').addClass('neg').click(function(){
-							nmpd.setValue(nmpd.getValue() * (-1));
-						})))
-						.append($(options.cellTpl).append($(options.buttonNumberTpl).html(0).addClass('numero')))
 						.append($(options.cellTpl).append($(options.buttonFunctionTpl).html(options.decimalSeparator).addClass('sep').click(function(){
 							nmpd.setValue(nmpd.getValue().toString() + options.decimalSeparator);
+						})))
+						.append($(options.cellTpl).append($(options.buttonNumberTpl).html(0).addClass('numero')))
+						.append($(options.cellTpl).append($(options.buttonFunctionTpl).html('00').addClass('dblzero').click(function(){
+							nmpd.setValue(nmpd.getValue().toString() + "00");
 						})))
 						.append($(options.cellTpl).append($(options.buttonFunctionTpl).html(options.textDone).addClass('done')))
 					);
@@ -101,8 +101,8 @@
 				nmpd.append(table);
 				
 				// Hide buttons to be hidden
-				if (options.hidePlusMinusButton){
-					nmpd.find('.neg').hide();
+				if (options.hideDoubleZero){
+					nmpd.find('.dblzero').hide();
 				}
 				if (options.hideDecimalButton){
 					nmpd.find('.sep').hide();
@@ -283,7 +283,7 @@
 		buttonNumberTpl: '<button></button>',
 		buttonFunctionTpl: '<button></button>',
 		gridTableClass: '',
-		hidePlusMinusButton: false,
+		hideDoubleZero: false,
 		hideDecimalButton: false,
 		textDone: 'Done',
 		textDelete: 'Del',
